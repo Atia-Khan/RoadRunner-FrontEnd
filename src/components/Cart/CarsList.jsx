@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
-import "./carList.css";
-import {  Link } from 'react-router-dom';
-import RentForm from './RentForm';
+import  styles from "./carList.module.css";
+import {  Link, useNavigate } from 'react-router-dom';
+import RentForm from '../RentForm/RentForm';
 import { Box } from "@mui/material";
-import Header from "./Header";
+import Header from "../Header/Header";
 
 const CarsList = () => {
+ const nav = useNavigate();
     const [carList, setCarList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+const navigateForm = () => {
+ nav('./RentForm.jsx');
+}
 
 
     useEffect(() => {
@@ -36,24 +41,24 @@ const CarsList = () => {
     <>
    
       <Header />
-      <div className="mainContainer">
+      <div className={styles.mainContainer}>
         {carList.map((car) => {
             return (
          <div>
-            <div key={car.id} className="carcard">
+            <div key={car.id} className={styles.carcard}>
                 <div>
                     <img src={car.imgLink} alt="cars"  />
                 </div>
-                <div className="textContainer">
+                <div className={styles.textContainer}>
                     <Link to={`/cars/${car.id}`} style={{textDecoration: 'none'}}>
-                    <h1 className="carName">{car.name}</h1>
+                    <h1 className={styles.carName}>{car.name}</h1>
                     </Link>
-                    <p className="shortDesc">{car.shortDesc}</p>
-                    <p className="price">{car.pricePerDay}</p>
+                    <p>{car.shortDesc}</p>
+                    <p className={styles.price}>{car.pricePerDay}</p>
                 </div>
                 <div>
-                    <Link to={`/form/${car.id}`}>
-                    <button type="submit">Rent Me</button>
+                    <Link to={`/Rentform/${car.id}`}>
+                    <button type="submit" >Rent Me</button>
                     </Link>
                 </div>
 

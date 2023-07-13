@@ -1,8 +1,8 @@
 
-import CarsList from "./components/CarsList";
+import CarsList from "./components/Cart/CarsList";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import DetailedPage from "./components/DetailedPage";
-import RentForm from './components/RentForm';
+import DetailedPage from "./components/Detail/DetailedPage";
+import RentForm from './components/RentForm/RentForm';
 function App() {
   return (
   <BrowserRouter>

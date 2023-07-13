@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "../images/logo-removebg-preview.png";
+import logo from "../../images/logo-removebg-preview.png";
 import { Box} from "@mui/material";
 import './header.css';
 

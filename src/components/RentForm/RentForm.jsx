@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // import "./BookingForm.css";
 import { Box } from "@mui/material";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import ThankYou from "./ThankYou";
+import ThankYou from "../ThankYou/ThankYou";
 import "./rentform.css";
 
 const BookingForm = () => {
@@ -28,8 +28,23 @@ const BookingForm = () => {
       .then(data => setSelectedCar(data))
       .catch(error => console.log(error));
 
+      let oldData = localStorage.getItem("userData");
+      oldData = JSON.parse(oldData);
+      console.log(oldData);
+      setFormData({
+        name:oldData.name,
+        number: oldData.number,
+        address: oldData.address,
+        pickupDate: oldData.pickup,
+        dropofDate: oldData.dropofDate,
+        driverLicense: oldData.driverLicense,
+        totalDays: oldData.totalDays,
+      })
+    
+ 
 
-  }, []);
+
+  }, [id]);
   console.log(selectedCar.pricePerDay);
   const [confirmationStatus, setConfirmationStatus] = useState(false);
 
@@ -49,6 +64,11 @@ const BookingForm = () => {
     totalPriceWithDamage,
   } = formData;
 
+  const navigateHome = () => {
+    console.log("clicked");
+    nav('/');
+  }
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -59,7 +79,7 @@ const BookingForm = () => {
   const calculateTotalDays = () => {
     const pick = new Date(pickupDate);
     const drop = new Date(dropofDate);
-    const totalDays = Math.ceil((drop - pick) / (1000 * 60 * 60 * 24));
+   const totalDays= Math.ceil((drop - pick) / (1000 * 60 * 60 * 24));
     return totalDays;
   };
 
@@ -79,7 +99,20 @@ const BookingForm = () => {
     const totalProtectionCoverage = calculateTotalProtectionCoverage();
     return totalPrice + totalProtectionCoverage;
   };
+ 
+  function handleLocalStorage(){
 
+    const userData ={
+      name: name,
+      address: address,
+      number: number,
+      pickup:pickupDate,
+      drop: dropofDate,
+      driverLicense: driverLicense,
+    }
+    localStorage.setItem("userData", JSON.stringify(userData));
+
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -111,6 +144,8 @@ const BookingForm = () => {
       .then((responseData) => {
         console.log("Booking data sent:", responseData);
         if (responseData.ok) {
+          
+         
           setConfirmationStatus(true);
 
         }
@@ -309,8 +344,17 @@ const BookingForm = () => {
               Confirm My Stay
             </button>
 
+
+          
+            
+
           </form>
 
+          <button
+               onClick={handleLocalStorage}
+              className="changeCarBtn">
+              Change Car
+            </button>
         </div>
         {confirmationStatus && <ThankYou />}
       </Box>
