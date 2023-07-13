@@ -1,0 +1,11 @@
+.navbar{
+    height: 200px;
+    background-color: rgb(0, 0, 0);
+    justify-content: center;
+}
+
+.navbar img{
+    width: 300px;
+    height: auto;
+   justify-self: center;
+}

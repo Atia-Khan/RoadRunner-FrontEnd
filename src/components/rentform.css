@@ -1,0 +1,83 @@
+.outerBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.booking {
+    /* margin-top: -30rem; */
+    background-image: url('../images/blackcar.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid rgb(138, 138, 215);
+  }
+  
+  .booking h1 {
+    font-size: 35px;
+    margin-bottom: 16px;
+    text-align: center;
+    /* margin: 5rem; */
+    padding: 5rem;
+  
+  
+  }
+  
+  .booking-form-container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+   margin-bottom: 50px;
+    background-color: rgba(242, 242, 242, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: black;
+  }
+  
+  .booking-form-container h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-field {
+    margin-bottom: 20px;
+  }
+  
+  .form-field label {
+    font-weight: bold;
+  }
+  
+  .form-field input {
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+  }
+  
+  input[type='text'],
+  input[type='email'],
+  input[type='date'] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .submit-button {
+    padding: 12px 24px;
+    margin-top: 16px;
+    border-radius: 4px;
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #0099cc;
+  }
+  
