@@ -18,6 +18,7 @@ const BookingForm = () => {
     dropofDate: "",
     totalPrice: "",
     driverLicense: "",
+    number: "",
     totalPriceWithDamage: "",
   });
 
@@ -30,13 +31,13 @@ const BookingForm = () => {
 
       let oldData = localStorage.getItem("userData");
       oldData = JSON.parse(oldData);
-      console.log(oldData);
+      console.log("old data jis",oldData);
       setFormData({
         name:oldData.name,
-        number: oldData.number,
         address: oldData.address,
-        pickupDate: oldData.pickup,
+        number: oldData.number,
         dropofDate: oldData.dropofDate,
+        pickupDate: oldData.pickupDate,
         driverLicense: oldData.driverLicense,
         totalDays: oldData.totalDays,
       })
@@ -106,12 +107,12 @@ const BookingForm = () => {
       name: name,
       address: address,
       number: number,
-      pickup:pickupDate,
-      drop: dropofDate,
-      driverLicense: driverLicense,
+      pickupDate:pickupDate,
+      dropofDate: dropofDate,
+      driverLicense: driverLicense, 
     }
     localStorage.setItem("userData", JSON.stringify(userData));
-
+nav('/');
   }
   const handleSubmit = (e) => {
     e.preventDefault();
