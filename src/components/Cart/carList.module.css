@@ -1,11 +1,11 @@
-.cars{
+/* .cars{
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 
-}
+} */
 .carcard {
 
   background-color: rgba(242, 242, 242, 0.88);
@@ -30,17 +30,29 @@
   .mainContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;
     background-image: url("../../images/pexels-mike-bird-120049.jpg");
-    background-size: cover;
+    background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
     width:100vw;
+    height: 700px;
     
     
   }
   
+
+  .cars{
+    background-color: ;
+    margin: 10rem;
+    display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: row; */
+  justify-content: space-around;
+  column-gap: 8rem;
+  /* align-items: center; */
+  }
   
   .carcard:hover {
     box-shadow: 0 8px 16px 0 rgba(251, 248, 248, 0.8);
@@ -99,4 +111,22 @@
     font-size: 25px;
     font-weight: bolder;
     color: #c80f0f;
+  }
+
+  .homePage{
+    color: white;
+    /* margin-top: 10rem; */
+    
+
+    
+  }
+  .homePage h1{
+    font-size: 6rem;
+    margin-top: 15rem;
+  }
+
+  .homePage p{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 10px;
   }

@@ -44,7 +44,8 @@ const navigateForm = () => {
       <div className={styles.mainContainer}>
 
         <div className={styles.homePage}>
-
+  <h1>Welcome to Road Runner</h1>
+  <p>Luxury Car Rentals </p>
         </div>
 
         <div className={styles.cars}>
