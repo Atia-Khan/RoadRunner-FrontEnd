@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { render, screen, fireEvent, getByTestId } from '@testing-library/react';
 import { BrowserRouter } from "react-router-dom";
 import React from 'react';
-import CarsList, {CarList} from '../Car/CarsList.jsx';
+
 
 import { MemoryRouter } from 'react-router-dom';
 import ThankYou from '../ThankYou/ThankYou.jsx';

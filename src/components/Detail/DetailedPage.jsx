@@ -51,6 +51,7 @@ const DetailedPage = () => {
       </Button>
 
       <Button
+      data-testId="rentMe"
         variant="contained"
         color="primary"
         component={Link}
