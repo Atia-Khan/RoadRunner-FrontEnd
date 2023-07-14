@@ -9,7 +9,7 @@ import Header from '../Header/Header';
 const BookingForm = () => {
   const [selectedCar, setSelectedCar] = useState("");
   const [checked, setChecked] = useState(false);
-  const [confirmationStatus, setConfirmationStatus] = useState(false);
+  // const [confirmationStatus, setConfirmationStatus] = useState(false);
 
   const nav = useNavigate();
   const { id } = useParams();
@@ -36,16 +36,18 @@ const BookingForm = () => {
 
       let oldData = localStorage.getItem("userData");
       oldData = JSON.parse(oldData);
-      console.log("old data jis",oldData);
-      setFormData({
-        name:oldData.name,
-        address: oldData.address,
-        number: oldData.number,
-        dropofDate: oldData.dropofDate,
-        pickupDate: oldData.pickupDate,
-        driverLicense: oldData.driverLicense,
-        totalDays: oldData.totalDays,
-      })
+      if(oldData){
+        console.log("old data jis",oldData);
+        setFormData({
+          name:oldData.name,
+          address: oldData.address,
+          number: oldData.number,
+          dropofDate: oldData.drop,
+          pickupDate: oldData.pickup,
+          driverLicense: oldData.driverLicense,
+          totalDays: oldData.totalDays,
+        })
+      }
     
   }, [id]);
   // console.log(selectedCar.pricePerDay);
@@ -109,17 +111,15 @@ const BookingForm = () => {
       name: name,
       address: address,
       number: number,
-      pickupDate:pickupDate,
-      dropofDate: dropofDate,
+      pickup: pickupDate,
+      drop: dropofDate,
       driverLicense: driverLicense, 
     }
     localStorage.setItem("userData", JSON.stringify(userData));
 nav('/');
   }
 
-  
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
+
 
     const handleCheckOut= (e) => {
       e.preventDefault();
@@ -202,9 +202,11 @@ nav('/');
                           console.error('Error saving data:', error);
                       });
                     } 
-                    nav('/ThankYou')
+                    localStorage.clear();
+                  
+                    nav('/ThankYou');
+                    
                   }
-        
 
     // const totalNights = calculateTotalNights();
     // const totalPrice = calculateTotalPrice();
@@ -267,13 +269,13 @@ nav('/');
           <div className="textContainer">
             <Link to={`/cars/${selectedCar.id}`} style={{ textDecoration: 'none' }}>
               <h1 className="carName">{selectedCar.name}</h1>
-            </Link>handleRentMeNow
+            </Link>
             <p className="shortDesc">{selectedCar.shortDesc}</p>
-            <p className="price">{selectedCar.pricePerDay}</p>
+            <p className="price"><bolder>{selectedCar.pricePerDay}</bolder></p>
           </div>
 
         </div>
-        <div className="booking-form-container">
+        <div className="booking-form-container" >
           <h2>Booking Form</h2>
           <form onSubmit={handleCheckOut} className="booking-form">
             <div className="form-field">
@@ -291,7 +293,7 @@ nav('/');
             <div className="form-field">
               <label htmlFor="number">Contact Number:</label>
               <input
-                type="number"
+                type="text"
 
                 id="number"
                 name="number"
@@ -383,7 +385,7 @@ nav('/');
                 name="protection"
                 placeholder="0"
                 onChange={handleChecked}
-              // value={}
+             
 
               />
 
@@ -449,7 +451,7 @@ nav('/');
               Choose Another Car
             </button>
         </div>
-        {confirmationStatus && <ThankYou />}
+        {/* {confirmationStatus && <ThankYou />} */}
       </Box>
     </Box>
   </>

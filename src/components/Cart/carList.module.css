@@ -1,11 +1,4 @@
-/* .cars{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
 
-} */
 .carcard {
 
   background-color: rgba(242, 242, 242, 0.88);
@@ -82,7 +75,7 @@
     font-weight: bold;
     /* margin-bottom: 8px; */
    text-align: center;
-    color: #5f0202;
+    color: #770707;
   }
   .carcard p {
     /* font-size: 20px; */

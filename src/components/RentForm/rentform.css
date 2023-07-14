@@ -37,7 +37,8 @@
   }
   
   .booking-form-container h2 {
-    font-size: 24px;
+    font-size: 28px;
+    text-align: center;
     /* margin-bottom: 16px; */
   }
   
@@ -112,7 +113,7 @@
       position:relative;
   
       transition: transform 0.3s ease;
-      margin-bottom: 12rem; 
+      margin-bottom: 20rem; 
     
     }
 
@@ -135,16 +136,40 @@
     .carcard h1{
       font-size: 30px;
       font-weight: bold;
-      /* margin-bottom: 8px; */
+   
      text-align: center;
       color: #5f0202;
     }
     .carcard p {
       font-size: 18px;
-      /* margin-bottom: 4px; */
+    
       font-weight: bold;
       color: #333;
       align-content: center;
       text-align:center;
     }
-  
+    input[type=text], select, textarea{
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: large;
+      resize: vertical;
+    }
+    
+    label {
+      padding: 8px 8px 8px 0;
+      display: inline-block;
+      font-size: large;
+    }
+    input[type=submit] {
+      background-color: #04AA6D;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      font-size: xx-large;
+      border-radius: 4px;
+      cursor: pointer;
+     
+    }
