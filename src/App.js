@@ -1,5 +1,5 @@
 
-import CarsList from "./components/Cart/CarsList";
+import CarsList from "./components/Car/CarsList";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DetailedPage from "./components/Detail/DetailedPage";
 import RentForm from './components/RentForm/RentForm';

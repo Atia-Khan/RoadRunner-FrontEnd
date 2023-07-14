@@ -6,8 +6,8 @@ import './header.css';
 const Header = () => {
   return (
     <div>
-        <Box className="navbar">
-<img src={logo} alt="logo" />
+        <Box className="navbar" >
+<img src={logo} alt="logo" data-testId="logo"/>
         </Box>
     </div>
   )

@@ -12,9 +12,6 @@ const ThankYou = () => {
   }
 
 
-  const handleStorage = ()=> {
-
-  }
   
  return (
     <>
@@ -22,11 +19,11 @@ const ThankYou = () => {
 
     <div className="mainContainer">
 <div className='text'> 
-<h1>Thank You!</h1>
-<img src={checkMark} alt="checkMark" />
+<h1 data-testId="thankYou">Thank You!</h1>
+<img src={checkMark} alt="checkMark" data-testId="checkMark" />
 
 <div className="btn">
-<button onClick={handleNavigation}>Go To Home</button>
+<button onClick={handleNavigation} data-testId="navigate">Go To Home</button>
 
 </div>
 

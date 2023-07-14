@@ -281,6 +281,7 @@ nav('/');
             <div className="form-field">
               <label htmlFor="name">Name:</label>
               <input
+              data-testId="name"
                 type="text"
                 id="name"
                 name="name"
@@ -294,7 +295,7 @@ nav('/');
               <label htmlFor="number">Contact Number:</label>
               <input
                 type="text"
-
+                data-testId="number"
                 id="number"
                 name="number"
                 value={number}
@@ -308,6 +309,7 @@ nav('/');
               <input
                 type="text"
                 id="address"
+                data-testId="address"
                 name="address"
                 value={address}
                 onChange={handleChange}
@@ -319,6 +321,7 @@ nav('/');
               <label htmlFor="driverLicense">Driver's License Number</label>
               <input
                 type="text"
+                data-testId="driverLicense"
                 id="driverLicense"
                 name="driverLicense"
                 value={driverLicense}
@@ -331,6 +334,7 @@ nav('/');
               <label htmlFor="pickupDate">Pickup Date:</label>
               <input
                 type="datetime-local"
+                data-testId="pickupDate"
                 id="pickupDate"
                 name="pickupDate"
                 value={pickupDate}
@@ -346,6 +350,7 @@ nav('/');
               <input
                 type="datetime-local"
                 id="dropofDate"
+                data-testId="dropofDate"
                 name="dropofDate"
                 value={dropofDate}
                 onChange={handleChange}
@@ -357,7 +362,8 @@ nav('/');
               <label htmlFor="pricePerDay">Price per Day:</label>
               <input
                 type="text"
-                id="pricePerNight"
+                data-testId="pricePerDay"
+                id="pricePerDay"
                 value={selectedCar.pricePerDay}
                 readOnly
               />
@@ -367,6 +373,7 @@ nav('/');
               <label htmlFor="totalDays">Total Days:</label>
               <input
                 type="text"
+                data-testId="totalDays"
                 placeholder="0"
                 id="totalDays"
                 value={calculateTotalDays()}
@@ -381,6 +388,7 @@ nav('/');
               <label htmlFor="DamageCoverage">Do You Need Damage Protection?</label>
               <input
                 type="checkbox"
+                data-testId="damageprotection"
                 id="damageprotection"
                 name="protection"
                 placeholder="0"
@@ -398,6 +406,7 @@ nav('/');
                   <label htmlFor="totalProtectionCoverage">Total Protection Coverage:</label>
                   <input
                     type="text"
+                    data-testId="totalProtectionCoverage"
                     id="totalProtectionCoverage"
 
                     value={calculateTotalProtectionCoverage()}
@@ -409,6 +418,7 @@ nav('/');
                   <label htmlFor="orderPrice">Order Price(Including Damage Protection):</label>
                   <input
                     type="text"
+                    data-testId="OrderPrice"
                     id="orderPrice"
                     value={calculateOrderPrice()}
                     readOnly
@@ -421,6 +431,7 @@ nav('/');
                 <label htmlFor="totalPrice">Total Amount:</label>
                 <input
                   type="text"
+                  data-testId="totalPrice"
                   id="totalPrice"
 
                   value={calculateTotalPrice()}
@@ -434,7 +445,7 @@ nav('/');
 
 
             <button
-               onClick={handleCheckOut}
+               onClick={handleCheckOut} data-testId="Checkout"
               className="submit-button">
             CheckOut
             </button>
@@ -446,7 +457,7 @@ nav('/');
           </form>
 
           <button
-               onClick={handleLocalStorage}
+               onClick={handleLocalStorage} data-testId="changeCar"
               className="changeCarBtn">
               Choose Another Car
             </button>
