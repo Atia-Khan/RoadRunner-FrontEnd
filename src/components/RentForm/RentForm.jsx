@@ -4,10 +4,12 @@ import { Box } from "@mui/material";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import ThankYou from "../ThankYou/ThankYou";
 import "./rentform.css";
+import Header from '../Header/Header';
 
 const BookingForm = () => {
   const [selectedCar, setSelectedCar] = useState("");
   const [checked, setChecked] = useState(false);
+  const [confirmationStatus, setConfirmationStatus] = useState(false);
 
   const nav = useNavigate();
   const { id } = useParams();
@@ -19,9 +21,12 @@ const BookingForm = () => {
     totalPrice: "",
     driverLicense: "",
     number: "",
-    totalPriceWithDamage: "",
+    carId: ""
+    
   });
 
+
+  
 
   useEffect(() => {
     fetch(`http://localhost:8082/cars/get/${id}`)
@@ -42,17 +47,13 @@ const BookingForm = () => {
         totalDays: oldData.totalDays,
       })
     
- 
-
-
   }, [id]);
-  console.log(selectedCar.pricePerDay);
-  const [confirmationStatus, setConfirmationStatus] = useState(false);
+  // console.log(selectedCar.pricePerDay);
+ 
 
   const handleChecked = (event) => {
     setChecked(event.target.checked);
   }
-
 
   const {
     name,
@@ -61,8 +62,9 @@ const BookingForm = () => {
     pickupDate,
     dropofDate,
     driverLicense,
+    carId,
     totalPrice,
-    totalPriceWithDamage,
+  
   } = formData;
 
   const navigateHome = () => {
@@ -81,7 +83,7 @@ const BookingForm = () => {
     const pick = new Date(pickupDate);
     const drop = new Date(dropofDate);
    const totalDays= Math.ceil((drop - pick) / (1000 * 60 * 60 * 24));
-    return totalDays;
+    return totalDays + 1;
   };
 
   const calculateTotalPrice = () => {
@@ -114,51 +116,141 @@ const BookingForm = () => {
     localStorage.setItem("userData", JSON.stringify(userData));
 nav('/');
   }
-  const handleSubmit = (e) => {
-    e.preventDefault();
+
+  
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+    const handleCheckOut= (e) => {
+      e.preventDefault();
+
+      if(checked === false){
+        const formInfo = {
+          carId: selectedCar.id,
+          name: name,
+          number: number,
+          address: address,
+          driverLicense: driverLicense,
+          pickup:pickupDate,
+          drop: dropofDate,
+          totalPrice: calculateTotalPrice()
+        }
+        fetch('http://localhost:8083/forms/post', {
+          method: 'POST' ,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formInfo),
+        })
+        .then((response) => response.json())
+            .then(response => {
+                console.log("store the actual price without damage protection.")
+            })
+            .catch(error => {
+                console.error('Error saving data:', error);
+            });
+      
+        }
+        else {
+          const formInfoWithDamageProtection ={
+            carId: selectedCar.id,
+            name: name,
+            number: number,
+            address: address,
+            driverLicense: driverLicense,
+            pickup:pickupDate,
+            drop: dropofDate,
+            totalPrice: calculateOrderPrice()
+          }
+          fetch('http://localhost:8083/forms/post', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formInfoWithDamageProtection)
+        })
+            .then(response => {
+                console.log("store the price with damage Protection")
+      
+            })
+            .catch(error => {
+                console.error('Error saving data:', error);
+            });
+      
+            const DamageProtection = {
+              carId: 6,
+              name: name,
+            number: number,
+            address: address,
+            driverLicense: driverLicense,
+            pickup:pickupDate,
+            drop: dropofDate,
+            totalPrice: calculateTotalProtectionCoverage()
+            }
+            fetch('http://localhost:8083/forms/post', {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify(DamageProtection)
+                  })
+                      .then(response => {
+                          console.log("store the damage protection too..")
+      
+                      })
+                      .catch(error => {
+                          console.error('Error saving data:', error);
+                      });
+                    } 
+                    nav('/ThankYou')
+                  }
+        
 
     // const totalNights = calculateTotalNights();
     // const totalPrice = calculateTotalPrice();
     // const taxAmount = calculateTax();
     // const totalPriceWithTax = calculateTotalWithTax();
 
-    const data = {
-      name: formData.name,
-      address: formData.address,
-      number: formData.number,
-      pickup: formData.pickupDate,
-      drop: formData.dropofDate,
-      driverLicense: formData.driverLicense,
-      totalPrice: calculateTotalPrice(),
-      orderPrice: calculateOrderPrice(),
-    };
+  //   const data = {
+  //     name: formData.name,
+  //     address: formData.address,
+  //     number: formData.number,
+  //     pickup: formData.pickupDate,
+  //     drop: formData.dropofDate,
+  //     carId: selectedCar.id,
+  //     driverLicense: formData.driverLicense,
+  //     totalPrice: calculateTotalPrice(),
+  //     damageProtection: calculateOrderPrice(),
+  //   };
 
-    console.log(data);
-    fetch("http://localhost:8083/forms/post", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log("Booking data sent:", responseData);
-        if (responseData.ok) {
+  //   console.log(data);
+  //   fetch("http://localhost:8083/forms/post", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(data),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((responseData) => {
+  //       console.log("Booking data sent:", responseData);
+  //       if (responseData.ok) {
           
          
-          setConfirmationStatus(true);
+  //         setConfirmationStatus(true);
 
-        }
-      })
-      .catch((error) => {
-        console.error("Error sending booking data:", error);
-      });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error sending booking data:", error);
+  //     });
 
-    nav("/confirmationpage");
-  };
+  //   nav("/confirmationpage");
+  // };
 
   return (
+<>
+    <Header/>
     <Box className="booking">
 
 
@@ -175,7 +267,7 @@ nav('/');
           <div className="textContainer">
             <Link to={`/cars/${selectedCar.id}`} style={{ textDecoration: 'none' }}>
               <h1 className="carName">{selectedCar.name}</h1>
-            </Link>
+            </Link>handleRentMeNow
             <p className="shortDesc">{selectedCar.shortDesc}</p>
             <p className="price">{selectedCar.pricePerDay}</p>
           </div>
@@ -183,7 +275,7 @@ nav('/');
         </div>
         <div className="booking-form-container">
           <h2>Booking Form</h2>
-          <form onSubmit={handleSubmit} className="booking-form">
+          <form onSubmit={handleCheckOut} className="booking-form">
             <div className="form-field">
               <label htmlFor="name">Name:</label>
               <input
@@ -340,9 +432,9 @@ nav('/');
 
 
             <button
-              type="submit"
+               onClick={handleCheckOut}
               className="submit-button">
-              Confirm My Stay
+            CheckOut
             </button>
 
 
@@ -354,14 +446,15 @@ nav('/');
           <button
                onClick={handleLocalStorage}
               className="changeCarBtn">
-              Change Car
+              Choose Another Car
             </button>
         </div>
         {confirmationStatus && <ThankYou />}
       </Box>
     </Box>
+  </>
 
   );
-};
+            }
 
 export default BookingForm;

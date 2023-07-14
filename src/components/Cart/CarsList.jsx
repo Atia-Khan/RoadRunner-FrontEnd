@@ -42,7 +42,14 @@ const navigateForm = () => {
    
       <Header />
       <div className={styles.mainContainer}>
-        {carList.map((car) => {
+
+        <div className={styles.homePage}>
+
+        </div>
+
+        <div className={styles.cars}>
+        {carList.map((car, index) => {
+            if(index <= 4){
             return (
          <div>
             <div key={car.id} className={styles.carcard}>
@@ -54,7 +61,7 @@ const navigateForm = () => {
                     <h1 className={styles.carName}>{car.name}</h1>
                     </Link>
                     <p>{car.shortDesc}</p>
-                    <p className={styles.price}>{car.pricePerDay}</p>
+                    <p className={styles.price}>Rs:{car.pricePerDay}</p>
                 </div>
                 <div>
                     <Link to={`/Rentform/${car.id}`}>
@@ -62,14 +69,13 @@ const navigateForm = () => {
                     </Link>
                 </div>
 
-            </div>
-           
-            {/* <RentForm key={car.id}/> */}
+            </div> 
        
         </div>
             )
+            }
         })}
-
+        </div>
        
             </div>
      

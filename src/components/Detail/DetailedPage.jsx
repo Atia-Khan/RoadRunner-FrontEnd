@@ -1,5 +1,5 @@
 
-
+import Header from '../Header/Header';
 import React, { useEffect, useState } from "react";
 import { Typography, Button } from "@mui/material";
 import { useParams, Link } from "react-router-dom";
@@ -22,6 +22,8 @@ const DetailedPage = () => {
   }
 
   return (
+<>
+    <Header />
     <div className="container">
       <img src={car.imgLink} alt={car.name} className="image" />
       <Typography variant="h5" className="title bold">
@@ -57,6 +59,7 @@ const DetailedPage = () => {
         Rent Me Now
       </Button>
     </div>
+    </>
   );
 };
 
